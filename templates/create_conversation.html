@@ -20,9 +20,16 @@
       ></textarea>
     </div>
     
-    <div class="button-container">
-      <button type="submit" class="create-btn">Create</button>
-      <button type="button" class="cancel-btn" hx-get="/topics/{{ topic_id }}/conversations" hx-target="#topic-{{ topic_id }}-conversations">Cancel</button>
+    <div class="form-footer">
+      <div class="topic-info">
+        <span class="topic-label">Topic:</span>
+        <span class="topic-name">{{ topic.name }}</span>
+      </div>
+      
+      <div class="button-container">
+        <button type="submit" class="create-btn">Create</button>
+        <button type="button" class="cancel-btn" hx-get="/topics/{{ topic.id }}/conversations" hx-target="#topic-{{ topic.id }}-conversations">Cancel</button>
+      </div>
     </div>
   </form>
 </div>

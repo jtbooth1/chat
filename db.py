@@ -130,6 +130,15 @@ class MessageWithAuthor:
             created_at=datetime.fromisoformat(row["created_at"])
         )
 
+class TopicWithConversations:
+    """Class representing a Topic with its associated Conversations."""
+    
+    def __init__(self, topic, conversations=None):
+        self.id = topic.id
+        self.name = topic.name
+        self.description = topic.description
+        self.conversations = conversations or []
+
 class DatabaseAccess:
     def __init__(self, db_path: str = "", connection: Optional[sqlite3.Connection] = None, seed_data: bool = False):
         """
@@ -392,7 +401,7 @@ class DatabaseAccess:
         rows = cursor.fetchall()
         return [Subscription.from_row(row) for row in rows]
 
-    def get_subscribed_topics(self, user_id: int) -> List[Topic]:
+    def get_subscribed_topics(self, user_id: int) -> List[TopicWithConversations]:
         """
         Retrieve all topics a user is subscribed to.
         """
@@ -404,4 +413,10 @@ class DatabaseAccess:
         """
         cursor = self.connection.execute(query, (user_id,))
         rows = cursor.fetchall()
-        return [Topic.from_row(row) for row in rows]
+        topics_with_conversations = []
+        for row in rows:
+            topic = Topic.from_row(row)
+            conversations = self.get_conversations_by_topic(topic.id)
+            topic_with_conversations = TopicWithConversations(topic, conversations)
+            topics_with_conversations.append(topic_with_conversations)
+        return topics_with_conversations

@@ -123,7 +123,85 @@ header {
     justify-content: flex-end;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
 .button-container button {
     padding: 8px 15px;
     cursor: pointer;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.topic-info {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.topic-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Topic and Conversation List Styles */
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topic-item {
+    margin-bottom: 12px;
+}
+
+.topic-header {
+    font-weight: bold;
+    padding: 5px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic-name {
+    flex-grow: 1;
+}
+
+.create-conversation-btn {
+    font-size: 0.8em;
+    padding: 2px 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.create-conversation-btn:hover {
+    background-color: #45a049;
+}
+
+.conversation-list {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+}
+
+.conversation-item {
+    padding: 3px 5px;
+    margin-bottom: 2px;
+    border-left: 2px solid #ccc;
+}
+
+.conversation-name {
+    font-size: 0.9em;
 }

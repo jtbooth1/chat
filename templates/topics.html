@@ -1,16 +1,22 @@
 <div id="topics">
     <h3>Topics</h3>
-    <ul>
+    <ul class="topic-list">
         {% for topic in topics %}
-        <li>
-            <div>
-                <span>{{ topic.name }}</span>
-                <button hx-get="/topics/{{ topic.id }}/conversations" hx-target="#conversations-{{ topic.id }}" hx-swap="outerHTML">
-                    Show Conversations
+        <li class="topic-item">
+            <div class="topic-header">
+                <span class="topic-name">{{ topic.name }}</span>
+                <button class="create-conversation-btn"
+                        hx-get="/create_conversation/topic/{{ topic.id }}"
+                        hx-target="#content">
+                    +
                 </button>
             </div>
-            <ul id="conversations-{{ topic.id }}">
-                <!-- Conversations will be dynamically loaded here -->
+            <ul class="conversation-list">
+                {% for conversation in topic.conversations %}
+                <li class="conversation-item">
+                    <span class="conversation-name">{{ conversation.name }}</span>
+                </li>
+                {% endfor %}
             </ul>
         </li>
         {% endfor %}

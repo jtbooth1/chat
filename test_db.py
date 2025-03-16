@@ -1,6 +1,8 @@
 import unittest
 import sqlite3
 from db import DatabaseAccess, User, Topic, Conversation, Message, Page, Participant, Subscription
+import os
+from db import TopicWithConversations
 
 class TestDatabaseAccess(unittest.TestCase):
     def setUp(self):
@@ -155,6 +157,41 @@ class TestDatabaseAccess(unittest.TestCase):
         self.assertEqual(len(subscribed_topics), 2)
         self.assertEqual(subscribed_topics[0].name, "topic1")
         self.assertEqual(subscribed_topics[1].name, "topic2")
+    
+    def test_get_subscribed_topics(self):
+        # create a user
+        user = self.db.create_user("test_user")
+        
+        # Create a test topic and subscribe the user to it
+        topic = self.db.create_topic("Test Topic", "Test Description")
+        self.db.subscribe_to_topic(topic.id, user.id)
+        
+        # Create test conversations in the topic
+        conversation1 = self.db.create_conversation(topic.id, "Test Conversation 1")
+        conversation2 = self.db.create_conversation(topic.id, "Test Conversation 2")
+        
+        # Get the subscribed topics with conversations
+        topics_with_conversations = self.db.get_subscribed_topics(user.id)
+        
+        # Assertions
+        self.assertTrue(len(topics_with_conversations) > 0, "No topics found")
+        
+        # Find our test topic
+        test_topic = None
+        for topic_with_conv in topics_with_conversations:
+            if topic_with_conv.name == "Test Topic":
+                test_topic = topic_with_conv
+                break
+        
+        self.assertIsNotNone(test_topic, "Test topic not found in subscribed topics")
+        self.assertIsInstance(test_topic, TopicWithConversations)
+        self.assertEqual(test_topic.description, "Test Description")
+        
+        # Verify the conversations
+        conversation_names = [conv.name for conv in test_topic.conversations]
+        self.assertIn("Test Conversation 1", conversation_names)
+        self.assertIn("Test Conversation 2", conversation_names)
+        self.assertEqual(len(test_topic.conversations), 2)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -74,10 +74,11 @@ async def read_root(request: Request, x_user: int = Header(default=1)):
         raise HTTPException(status_code=404, detail="User not found")
 
     topics = db.get_subscribed_topics(user.id)
+    
+    # Collect all conversations from all topics
     conversations = []
     for topic in topics:
-        topic_conversations = db.get_conversations_by_topic(topic.id)
-        conversations.extend(topic_conversations)
+        conversations.extend(topic.conversations)
 
     messages = db.get_messages(conversations[0].id, limit=10, offset=0) if conversations else []
 
@@ -128,10 +129,12 @@ async def topics(request: Request, x_user: int = Header(default=1), topic_name: 
     if request.method == "POST":
         if not topic_name:
             raise HTTPException(status_code=400, detail="Topic name is required")
-        topic = db.create_topic(topic_name, description=None)  # Use the existing create_topic method
+        topic = db.create_topic(topic_name, description=None)
         db.subscribe_to_topic(topic.id, user.id)
 
     topics = db.get_subscribed_topics(user.id)
+    # No need to enhance topics with conversations anymore since they're included
+    
     data = {
         "request": request,
         "topics": topics,
