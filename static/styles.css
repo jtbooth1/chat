@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#layout {
+    display: flex;
+    flex: 1;
+}
+
+#topics {
+    width: 20%;
+    background-color: #f4f4f4;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#tabs {
+    background-color: #ddd;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#conversation {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden; /* Prevent overflow from breaking layout */
+}
+
+#messages {
+    flex: 1; /* Take up remaining space above the input */
+    overflow-y: auto; /* Allow scrolling for messages */
+}
+
+#message-input {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+    flex-shrink: 0; /* Prevent the input from shrinking */
+}
+
+#message-input textarea {
+    flex: 1;
+    resize: none;
+    padding: 5px;
+}
+
+#message-input button {
+    margin-left: 10px;
+    padding: 5px 10px;
+}

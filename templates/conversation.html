@@ -1,0 +1,8 @@
+<div id="conversation">
+    <div id="messages">
+        {% for message in messages %}
+        <div><strong>{{ message.author_name }}:</strong> {{ message.content }}</div>
+        {% endfor %}
+    </div>
+    {% include "message_input.html" with context %}
+</div>

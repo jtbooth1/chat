@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx-ext-ws@2.0.2" crossorigin="anonymous"></script>
+</head>
+<body hx-ext="ws" ws-connect="/ws">
+    {% include "header.html" %}
+    <div id="layout">
+        {% include "topics.html" %}
+        <div id="main">
+            {% include "tabs.html" %}
+            {% include "conversation.html" %}
+        </div>
+    </div>
+</body>
+</html>

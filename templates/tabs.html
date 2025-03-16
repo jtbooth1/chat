@@ -1,0 +1,10 @@
+<div id="tabs">
+    {% for tab in tabs %}
+    <button 
+        hx-get="/conversation/{{ tab.id }}" 
+        hx-target="#conversation" 
+        hx-swap="innerHTML">
+        {{ tab.name }}
+    </button>
+    {% endfor %}
+</div>
