@@ -1,0 +1,28 @@
+<div class="create-conversation-container">
+  <form id="create-conversation-form" hx-post="/create_conversation/topic/{{topic.id}}" hx-target="#content">
+    <div class="input-container">
+      <input 
+        type="text" 
+        name="conversation_name" 
+        id="conversation_name" 
+        placeholder="Enter conversation name..." 
+        required
+      >
+    </div>
+    
+    <div class="message-input-container">
+      <textarea 
+        name="first_message" 
+        id="first_message" 
+        placeholder="Enter your first message..."
+        rows="6"
+        required
+      ></textarea>
+    </div>
+    
+    <div class="button-container">
+      <button type="submit" class="create-btn">Create</button>
+      <button type="button" class="cancel-btn" hx-get="/topics/{{ topic_id }}/conversations" hx-target="#topic-{{ topic_id }}-conversations">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -6,13 +6,15 @@
     <script src="https://unpkg.com/htmx.org@2.0.4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx-ext-ws@2.0.2" crossorigin="anonymous"></script>
 </head>
-<body hx-ext="ws" ws-connect="/ws">
+<body hx-ext="ws" ws-connect="/ws" hx-header="X-User: 1"> <!-- real auth TODO -->
     {% include "header.html" %}
     <div id="layout">
         {% include "topics.html" %}
         <div id="main">
             {% include "tabs.html" %}
-            {% include "conversation.html" %}
+            <div id="content">
+                {% include "conversation.html" %}
+            </div>
         </div>
     </div>
 </body>

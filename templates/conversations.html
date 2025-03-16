@@ -1,0 +1,14 @@
+<ul>
+    {% for conversation in conversations %}
+    <li>
+        <a href="/conversation/{{ conversation.id }}" hx-get="/conversation/{{ conversation.id }}" hx-target="#conversation" hx-swap="outerHTML">
+            {{ conversation.name }}
+        </a>
+    </li>
+    {% endfor %}
+    <button 
+      class="create-conversation-btn" 
+      hx-get="/create_conversation/topic/{{ topic.id }}"
+      hx-target="#content"
+    >Create Conversation</button>
+</ul>

@@ -2,7 +2,21 @@
     <h3>Topics</h3>
     <ul>
         {% for topic in topics %}
-        <li>{{ topic.name }}</li>
+        <li>
+            <div>
+                <span>{{ topic.name }}</span>
+                <button hx-get="/topics/{{ topic.id }}/conversations" hx-target="#conversations-{{ topic.id }}" hx-swap="outerHTML">
+                    Show Conversations
+                </button>
+            </div>
+            <ul id="conversations-{{ topic.id }}">
+                <!-- Conversations will be dynamically loaded here -->
+            </ul>
+        </li>
         {% endfor %}
     </ul>
+    <form hx-post="/topics" hx-target="#topics" hx-swap="outerHTML">
+        <input type="text" name="topic_name" placeholder="New topic name" required />
+        <button type="submit">Add Topic</button>
+    </form>
 </div>
