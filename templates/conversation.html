@@ -1,5 +1,5 @@
-<div id="conversation">
-    <div id="messages">
+<div id="conversation" class="container-fluid p-medium">
+    <div id="messages" class="container-scrollable">
         {% for message in messages %}
         <div><strong>{{ message.author_name }}:</strong> {{ message.content }}</div>
         {% endfor %}

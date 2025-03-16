@@ -29,7 +29,82 @@ body {
   color: var(--dark-gray);
 }
 
-/* Layout Components */
+/* Layout utility classes */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-medium);
+}
+
+.container-fluid {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.container-scrollable {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* Spacing utilities */
+.gap-small {
+  gap: var(--space-small);
+}
+
+.gap-medium {
+  gap: var(--space-medium);
+}
+
+.gap-large {
+  gap: var(--space-large);
+}
+
+.p-small {
+  padding: var(--space-small);
+}
+
+.p-medium {
+  padding: var(--space-medium);
+}
+
+.p-large {
+  padding: var(--space-large);
+}
+
+/* Background colors */
+.bg-dark {
+  background-color: var(--dark-gray);
+  color: white;
+}
+
+.bg-light {
+  background-color: var(--light-gray);
+}
+
+.bg-white {
+  background-color: var(--gray-white);
+}
+
+/* Header styling */
 header {
   background-color: var(--dark-gray);
   color: white;
@@ -39,59 +114,22 @@ header {
   align-items: center;
 }
 
-/* Main Layout Structure */
+/* Layout-specific styles that can't be easily abstracted */
 #layout {
   display: flex;
   flex: 1;
-  min-height: 0; /* Prevent overflow in flexbox context */
+  min-height: 0;
 }
 
 #topics {
   width: 20%;
-  background-color: var(--gray-white);
-  padding: var(--space-medium);
   overflow-y: auto;
-}
-
-#main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-#tabs {
-  background-color: var(--light-gray);
-  padding: var(--space-medium);
-  display: flex;
-  gap: var(--space-medium);
-  flex-shrink: 0;
-}
-
-/* Common flex container styles */
-.flex-container, #content, #conversation {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  overflow: hidden;
-}
-
-#messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: var(--space-medium);
 }
 
 /* Form elements */
 form {
   display: flex;
   gap: var(--space-medium);
-  padding: var(--space-medium);
-}
-
-form.vertical {
-  flex-direction: column;
 }
 
 input, textarea, button {
@@ -103,6 +141,7 @@ input, textarea, button {
 textarea {
   resize: none;
   flex: 1;
+  width: 100%;
 }
 
 button {
@@ -110,50 +149,27 @@ button {
   background-color: white;
 }
 
-/* Action buttons */
-.action-button, 
-button[type="submit"], 
-.create-conversation-btn,
-button[hx-post], 
-button[ws-send], 
-form button {
+/* Button styles */
+.btn {
+  cursor: pointer;
+  padding: var(--space-medium);
+  border-radius: 3px;
+  border: 1px solid var(--light-gray);
+}
+
+.btn-action {
   background-color: var(--action-green);
   color: white;
   border: none;
 }
 
-.action-button:hover,
-button[type="submit"]:hover, 
-.create-conversation-btn:hover,
-button[hx-post]:hover, 
-button[ws-send]:hover {
+.btn-action:hover {
   background-color: var(--action-green-hover);
 }
 
-/* Message input section */
-#message-input {
-  display: flex;
-  padding: var(--space-medium);
-  background-color: var(--gray-white);
-  flex-shrink: 0;
-  gap: var(--space-medium);
-}
-
-/* Flexible containers */
-.flex-grow {
-  flex: 1;
-  display: flex;
-}
-
-.form-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.topic-info {
-  font-size: 0.9em;
-  color: var(--medium-gray);
+.btn-small {
+  font-size: 0.8em;
+  padding: var(--space-small);
 }
 
 /* List styles */
@@ -167,20 +183,16 @@ li {
   padding: var(--space-small) 0;
 }
 
-/* Topic and conversation lists */
-.topic-item {
-  margin-bottom: var(--space-medium);
-}
-
+/* Topic and conversation specific styles */
 .topic-header {
   font-weight: bold;
-  padding: var(--space-small);
   background-color: var(--light-gray);
   border-radius: 4px;
   margin-bottom: var(--space-small);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.topic-name {
+  flex-grow: 1;
 }
 
 .conversation-list {
@@ -192,39 +204,15 @@ li {
   padding-left: var(--space-small);
 }
 
-/* Utility classes */
-.flex-row {
-  display: flex;
-  align-items: center;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-.small-text {
+/* Text utilities */
+.text-small {
   font-size: 0.9em;
 }
 
-/* Create conversation container/button */
-.create-conversation-container {
-  padding: var(--space-large);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.text-bold {
+  font-weight: bold;
 }
 
-.create-conversation-btn {
-  font-size: 0.8em;
-  padding: var(--space-small);
-}
-
-.message-input-container {
-  flex: 1;
-  display: flex;
+.text-muted {
+  color: var(--medium-gray);
 }

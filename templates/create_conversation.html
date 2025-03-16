@@ -1,34 +1,36 @@
-<div class="create-conversation-container">
-  <form hx-post="/create_conversation/topic/{{topic.id}}" hx-target="#content" class="vertical">
-    <div class="input-container">
+<div class="container-fluid p-large">
+  <form hx-post="/create_conversation/topic/{{topic.id}}" hx-target="#content" class="container container-fluid gap-large">
+    <div>
       <input 
         type="text" 
         name="conversation_name" 
         id="conversation_name" 
         placeholder="Enter conversation name..." 
         required
+        class="flex-grow"
       >
     </div>
     
-    <div class="message-input-container">
+    <div class="container-fluid">
       <textarea 
         name="first_message" 
         id="first_message" 
         placeholder="Enter your first message..."
-        rows="6"
         required
       ></textarea>
     </div>
     
-    <div class="form-footer">
-      <div class="topic-info">
-        <span class="topic-label">Topic:</span>
-        <span class="topic-name">{{ topic.name }}</span>
+    <div class="row justify-between">
+      <div class="text-small text-muted">
+        <span class="text-bold">Topic:</span>
+        <span>{{ topic.name }}</span>
       </div>
       
-      <div class="button-container">
-        <button type="submit" class="create-btn">Create</button>
-        <button type="button" class="cancel-btn" hx-get="/topics/{{ topic.id }}/conversations" hx-target="#topic-{{ topic.id }}-conversations">Cancel</button>
+      <div class="row gap-medium">
+        <button type="submit" class="btn btn-action">Create</button>
+        <button type="button" class="btn" 
+                hx-get="/topics/{{ topic.id }}/conversations" 
+                hx-target="#topic-{{ topic.id }}-conversations">Cancel</button>
       </div>
     </div>
   </form>

@@ -1,11 +1,11 @@
-<div id="topics">
+<div id="topics" class="container bg-white">
     <h3>Topics</h3>
-    <ul class="topic-list">
+    <ul class="gap-medium">
         {% for topic in topics %}
-        <li class="topic-item">
-            <div class="topic-header">
+        <li>
+            <div class="row topic-header p-small justify-between">
                 <span class="topic-name">{{ topic.name }}</span>
-                <button class="create-conversation-btn"
+                <button class="btn btn-action btn-small"
                         hx-get="/create_conversation/topic/{{ topic.id }}"
                         hx-target="#content">
                     +
@@ -14,15 +14,15 @@
             <ul class="conversation-list">
                 {% for conversation in topic.conversations %}
                 <li class="conversation-item">
-                    <span class="conversation-name">{{ conversation.name }}</span>
+                    <span class="text-small">{{ conversation.name }}</span>
                 </li>
                 {% endfor %}
             </ul>
         </li>
         {% endfor %}
     </ul>
-    <form hx-post="/topics" hx-target="#topics" hx-swap="outerHTML" class="vertical">
+    <form hx-post="/topics" hx-target="#topics" hx-swap="outerHTML" class="container gap-medium">
         <input type="text" name="topic_name" placeholder="New topic name" required />
-        <button type="submit">Add Topic</button>
+        <button class="btn btn-action">Add Topic</button>
     </form>
 </div>
