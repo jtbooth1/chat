@@ -1,207 +1,230 @@
+/* CSS Variables for consistent theming */
+:root {
+  /* Colors */
+  --dark-gray: #333;
+  --medium-gray: #666;
+  --light-gray: #ddd;
+  --gray-white: #f4f4f4;
+  --action-green: #4CAF50;
+  --action-green-hover: #45a049;
+  
+  /* Spacing */
+  --space-small: 4px;
+  --space-medium: 8px;
+  --space-large: 15px;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: var(--dark-gray);
 }
 
+/* Layout Components */
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: var(--dark-gray);
+  color: white;
+  padding: var(--space-medium);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Main Layout Structure */
 #layout {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
+  min-height: 0; /* Prevent overflow in flexbox context */
 }
 
 #topics {
-    width: 20%;
-    background-color: #f4f4f4;
-    padding: 10px;
-    overflow-y: auto;
+  width: 20%;
+  background-color: var(--gray-white);
+  padding: var(--space-medium);
+  overflow-y: auto;
 }
 
 #main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0; /* Critical fix to allow child flexbox to shrink */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 #tabs {
-    background-color: #ddd;
-    padding: 10px;
-    display: flex;
-    gap: 10px;
-    flex-shrink: 0; /* Prevent tabs from shrinking */
+  background-color: var(--light-gray);
+  padding: var(--space-medium);
+  display: flex;
+  gap: var(--space-medium);
+  flex-shrink: 0;
 }
 
-#content {
-    flex: 1; /* Allow #content to grow and fill the remaining space */
-    display: flex; /* Enable flexbox for its children */
-    flex-direction: column; /* Stack children vertically */
-    min-height: 0; /* Critical fix to allow proper flexbox behavior */
-    overflow: hidden; /* Prevent any potential overflow issues */
-}
-
-#conversation {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0; /* Critical fix for nested flexbox */
-    overflow: hidden; /* Contain children properly */
+/* Common flex container styles */
+.flex-container, #content, #conversation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 #messages {
-    flex: 1; /* Take up remaining space above the input */
-    overflow-y: auto; /* Allow scrolling for messages */
-    padding: 10px; /* Add some padding for better appearance */
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-medium);
 }
 
+/* Form elements */
+form {
+  display: flex;
+  gap: var(--space-medium);
+  padding: var(--space-medium);
+}
+
+form.vertical {
+  flex-direction: column;
+}
+
+input, textarea, button {
+  padding: var(--space-medium);
+  border: 1px solid var(--light-gray);
+  border-radius: 3px;
+}
+
+textarea {
+  resize: none;
+  flex: 1;
+}
+
+button {
+  cursor: pointer;
+  background-color: white;
+}
+
+/* Action buttons */
+.action-button, 
+button[type="submit"], 
+.create-conversation-btn,
+button[hx-post], 
+button[ws-send], 
+form button {
+  background-color: var(--action-green);
+  color: white;
+  border: none;
+}
+
+.action-button:hover,
+button[type="submit"]:hover, 
+.create-conversation-btn:hover,
+button[hx-post]:hover, 
+button[ws-send]:hover {
+  background-color: var(--action-green-hover);
+}
+
+/* Message input section */
 #message-input {
-    display: flex;
-    padding: 10px;
-    background-color: #f9f9f9;
-    flex-shrink: 0;
+  display: flex;
+  padding: var(--space-medium);
+  background-color: var(--gray-white);
+  flex-shrink: 0;
+  gap: var(--space-medium);
 }
 
-#message-input textarea {
-    flex: 1;
-    resize: none;
-    padding: 5px;
-}
-
-#message-input button {
-    margin-left: 10px;
-    padding: 5px 10px;
-}
-
-/* Create Conversation Form Styles */
-.create-conversation-container {
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    height: 100%;
-}
-
-#create-conversation-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    height: 100%;
-}
-
-.input-container input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-.message-input-container {
-    flex: 1;
-}
-
-.message-input-container textarea {
-    width: 100%;
-    height: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    resize: none;
-}
-
-.button-container {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-}
-
-.button-container {
-    display: flex;
-    gap: 10px;
-}
-
-.button-container button {
-    padding: 8px 15px;
-    cursor: pointer;
+/* Flexible containers */
+.flex-grow {
+  flex: 1;
+  display: flex;
 }
 
 .form-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topic-info {
-    font-size: 0.9em;
-    color: #666;
+  font-size: 0.9em;
+  color: var(--medium-gray);
 }
 
-.topic-label {
-    font-weight: bold;
-    margin-right: 5px;
+/* List styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Topic and Conversation List Styles */
-.topic-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+li {
+  padding: var(--space-small) 0;
 }
 
+/* Topic and conversation lists */
 .topic-item {
-    margin-bottom: 12px;
+  margin-bottom: var(--space-medium);
 }
 
 .topic-header {
-    font-weight: bold;
-    padding: 5px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.topic-name {
-    flex-grow: 1;
-}
-
-.create-conversation-btn {
-    font-size: 0.8em;
-    padding: 2px 5px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.create-conversation-btn:hover {
-    background-color: #45a049;
+  font-weight: bold;
+  padding: var(--space-small);
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  margin-bottom: var(--space-small);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .conversation-list {
-    list-style: none;
-    padding-left: 15px;
-    margin: 0;
+  padding-left: var(--space-large);
 }
 
 .conversation-item {
-    padding: 3px 5px;
-    margin-bottom: 2px;
-    border-left: 2px solid #ccc;
+  border-left: 2px solid var(--light-gray);
+  padding-left: var(--space-small);
 }
 
-.conversation-name {
-    font-size: 0.9em;
+/* Utility classes */
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.small-text {
+  font-size: 0.9em;
+}
+
+/* Create conversation container/button */
+.create-conversation-container {
+  padding: var(--space-large);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.create-conversation-btn {
+  font-size: 0.8em;
+  padding: var(--space-small);
+}
+
+.message-input-container {
+  flex: 1;
+  display: flex;
 }

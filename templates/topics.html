@@ -21,7 +21,7 @@
         </li>
         {% endfor %}
     </ul>
-    <form hx-post="/topics" hx-target="#topics" hx-swap="outerHTML">
+    <form hx-post="/topics" hx-target="#topics" hx-swap="outerHTML" class="vertical">
         <input type="text" name="topic_name" placeholder="New topic name" required />
         <button type="submit">Add Topic</button>
     </form>

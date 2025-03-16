@@ -26,6 +26,17 @@ Below the header bar is the topics column, left aligned. It has a list of topics
 has tabs to select between your open coversations & pages. Then, below that, the conversation (messages sorted by latest created_at). At
 the bottom, a text entry box & "send".
 
+The styles.css stylesheet is extremely concise. It creates a theme by combining rules that apply to many element types in a single declaration.
+For example, there are only two padding rules, 8px and 4px. All elements that need padding should receive them in a single declaration. Copy this style
+for any behavior that is shared by many elements, such as hovering or flex-column behavior.
+
+Use variables to keep track of commonly used colors and spacings.
+
+## Color
+
+The app is grayscale with the exception of green, which is used for any button that will affect the server state. There are four shades of gray:
+dark, medium, light, and gray-white, the lightest. 
+
 # Steps
 
 1. Database Schema DONE
